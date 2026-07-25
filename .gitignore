@@ -1,0 +1,23 @@
+# Pastas internas do Codex/agentes
+.agents/
+.codex/
+
+# Dependencias e configuracoes locais
+vendor/
+.env
+.env.local
+
+# Arquivos de sistema/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Uploads e arquivos gerados
+public/uploads/*
+logs/
+cache/
+
+# Backup temporario
+*.tmp
+*.bak

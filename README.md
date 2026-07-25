@@ -234,3 +234,124 @@ Possibilidades de deploy:
 - Servidor configurado com Apache, PHP e MySQL.
 - Ambiente Docker publicado em servidor ou plataforma de nuvem.
 
+## 14. Repositorio GitHub
+
+O projeto devera ser versionado com Git e publicado no GitHub.
+
+Etapas previstas:
+
+```bash
+git init
+git add .
+git commit -m "Planejamento inicial do sistema de gestao escolar"
+git branch -M main
+git remote add origin URL_DO_REPOSITORIO
+git push -u origin main
+```
+
+Observacao: o Git local ja foi inicializado, mas a pasta ainda precisa ser vinculada a um repositorio remoto do GitHub.
+
+## 15. Itens que ficarao para a proxima etapa
+
+Por enquanto, nao foram detalhados:
+
+- Documento PDF final.
+- DER ou MER.
+- Prototipos das telas.
+
+Esses itens serao preparados depois, com base no planejamento descrito acima.
+
+## 16. Entrega Parcial 2 - Estrutura MVC e Rotas
+
+Objetivo da etapa: implementar a base arquitetural da aplicacao.
+
+### 16.1 Estrutura MVC criada
+
+A estrutura MVC inicial foi implementada com separacao entre controllers, views e arquivos centrais da aplicacao.
+
+A implementacao foi mantida de forma simples, sem framework e sem Composer, usando `require_once` para carregar os arquivos principais. Essa escolha facilita a apresentacao academica e a compreensao da arquitetura MVC por iniciantes.
+
+```text
+app/
+├── Controllers/
+│   ├── AlunoController.php
+│   ├── AuthController.php
+│   ├── DashboardController.php
+│   ├── ErrorController.php
+│   ├── HomeController.php
+│   └── ModuloController.php
+├── Models/
+│   └── Aluno.php
+└── Views/
+    ├── alunos/
+    ├── auth/
+    ├── dashboard/
+    ├── errors/
+    ├── home/
+    ├── layouts/
+    └── modulos/
+core/
+├── Controller.php
+├── Router.php
+└── helpers.php
+public/
+├── css/
+├── js/
+├── .htaccess
+└── index.php
+```
+
+### 16.2 Controllers iniciais
+
+- **HomeController:** pagina inicial do sistema.
+- **DashboardController:** painel inicial da aplicacao.
+- **AuthController:** login, validacao inicial e logout.
+- **AlunoController:** listagem, formulario e rotas iniciais do CRUD de alunos.
+- **ModuloController:** paginas iniciais para professores, turmas, disciplinas, matriculas e usuarios.
+- **ErrorController:** tratamento inicial de erro 404 e metodo nao permitido.
+
+### 16.3 Model inicial
+
+- **Aluno:** retorna dados simulados de alunos enquanto o banco de dados ainda nao foi implementado.
+
+### 16.4 Views iniciais
+
+- Layout principal reutilizavel.
+- Tela inicial.
+- Dashboard.
+- Login.
+- Listagem de alunos.
+- Formulario de aluno.
+- Paginas iniciais dos modulos.
+- Paginas de erro 404 e 405.
+
+### 16.5 Sistema de rotas funcional
+
+O arquivo `public/index.php` funciona como front controller e registra as rotas principais da aplicacao. O roteador fica em `core/Router.php`.
+
+Rotas disponiveis:
+
+```text
+GET  /
+GET  /dashboard
+GET  /login
+POST /login
+GET  /logout
+GET  /alunos
+GET  /alunos/criar
+POST /alunos/salvar
+GET  /alunos/editar/{id}
+POST /alunos/atualizar/{id}
+POST /alunos/excluir/{id}
+GET  /professores
+GET  /turmas
+GET  /disciplinas
+GET  /matriculas
+GET  /usuarios
+```
+
+### 16.6 Link do GitHub
+
+Repositorio local Git inicializado.
+
+Link do GitHub: [Repositório](https://github.com/isa-csilva/projeto-integrador)
