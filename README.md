@@ -86,7 +86,7 @@ A solução implementa:
 - detecção de e-mail e matrícula duplicados;
 - mensagens flash e fluxo Post/Redirect/Get;
 - páginas de erro 404, 405 e 500;
-- interface responsiva em português brasileiro;
+- interface responsiva em português brasileiro; e
 - suporte à instalação em uma subpasta do <code>htdocs</code>.
 
 ### Situação das entregas
@@ -107,9 +107,9 @@ A solução implementa:
 ## 2️⃣ Arquitetura MVC
 
 O Apache encaminha as requisições não físicas para
-<code>public/index.php</code>. O front controller registra as rotas, e o
-<code>Router</code> seleciona o controller de acordo com o caminho e o método
-HTTP.
+<code>public/index.php</code>. O front controller inicializa a aplicação,
+carrega as rotas centralizadas em <code>routes/web.php</code> e solicita ao
+<code>Router</code> o despacho conforme o caminho e o método HTTP.
 
 ### Fluxo principal
 
@@ -117,8 +117,11 @@ HTTP.
 Navegador
     │ requisição HTTP
     ▼
-public/index.php
-    │
+public/index.php (Front Controller)
+    │ carrega as definições
+    ▼
+routes/web.php
+    │ registra as rotas
     ▼
 Router
     │ seleciona controller e ação
@@ -137,16 +140,35 @@ AlunoController
 
 | Camada | Implementação | Responsabilidade |
 | --- | --- | --- |
-| Entrada | <code>public/index.php</code> | Inicializa a aplicação e registra as rotas |
+| Entrada | <code>public/index.php</code> | Inicializa a aplicação e despacha a requisição |
+| Definição de rotas | <code>routes/web.php</code> | Centraliza caminhos, métodos e handlers sem duplicidades |
 | Roteamento | <code>core/Router.php</code> | Diferencia caminhos, parâmetros e métodos HTTP |
 | Controller | <code>app/Controllers</code> | Valida entradas e coordena o fluxo |
 | Model | <code>app/Models/Aluno.php</code> | Executa as operações de dados com PDO |
-| Banco | <code>core/Database.php</code> | Cria e reutiliza a conexão MySQL |
+| Banco | <code>core/Database.php</code> | Expõe <code>Database::connect()</code> e reutiliza a conexão PDO |
 | View | <code>app/Views</code> | Renderiza somente os dados recebidos |
 | Layout | <code>app/Views/layouts/main.php</code> | Reutiliza navegação, assets e estrutura HTML |
 
 As views não executam SQL, e o model não gera HTML. Todas as saídas dinâmicas
 são escapadas com o helper <code>e()</code>.
+
+### Alinhamento com as Aulas 02 a 07
+
+| Aula | Conceito aplicado | Evidência no projeto |
+| --- | --- | --- |
+| Aula 02 — Revisão de Banco de Dados | Banco, tabela, chaves e restrições | <code>database/schema.sql</code> e campos únicos de e-mail/matrícula |
+| Aula 03 — Arquitetura Web e MVC | Separação entre entrada, controle, dados e interface | <code>public/</code>, Controllers, Models e Views |
+| Aula 04 — Implementação MVC | Front Controller como ponto único de entrada | <code>public/index.php</code> |
+| Aula 05 — Rotas e URLs | Rotas centralizadas por caminho e verbo HTTP | <code>routes/web.php</code> e <code>core/Router.php</code> |
+| Aula 06 — Models e Banco | Model obtém a conexão reutilizável | <code>Aluno</code> usa <code>Database::connect()</code> |
+| Aula 07 — CRUD Create e Read | POST para cadastrar e GET para listar | <code>AlunoController::store()</code> e <code>AlunoController::index()</code> |
+
+A organização sugerida nas aulas concentra a classe de conexão em
+<code>app/Config/Database.php</code>. Este projeto preserva a estrutura
+equivalente que já estava funcional: <code>config/database.php</code> contém
+somente os valores de ambiente, enquanto <code>core/Database.php</code>
+centraliza a criação e a reutilização do PDO. As responsabilidades são as
+mesmas, mas ficam separadas entre configuração e infraestrutura.
 
 ---
 
@@ -239,7 +261,10 @@ O arquivo [<code>config/database.php</code>](config/database.php) lê:
 | <code>DB_USER</code> | <code>root</code> | Usuário local |
 | <code>DB_PASS</code> | vazio | Senha local |
 
-A conexão utiliza:
+A classe <code>core/Database.php</code> fornece
+<code>Database::connect()</code>. O método mantém a conexão em uma propriedade
+estática e devolve a mesma instância PDO durante a requisição. A conexão
+utiliza:
 
 - <code>utf8mb4</code>;
 - <code>PDO::ERRMODE_EXCEPTION</code>;
@@ -371,6 +396,8 @@ projeto-integrador/
 │   └── helpers.php
 ├── database/
 │   └── schema.sql
+├── routes/
+│   └── web.php
 ├── public/
 │   ├── css/
 │   ├── js/
