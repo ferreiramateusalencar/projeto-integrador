@@ -17,6 +17,7 @@
   <img alt="MySQL" src="https://img.shields.io/badge/MySQL-banco%20de%20dados-4479A1?logo=mysql&amp;logoColor=white"/>
   <img alt="PDO" src="https://img.shields.io/badge/PDO-prepared%20statements-334155"/>
   <img alt="XAMPP" src="https://img.shields.io/badge/XAMPP-ambiente%20local-FB7A24?logo=xampp&amp;logoColor=white"/>
+  <img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-22c55e"/>
   <img alt="Parcial 2" src="https://img.shields.io/badge/Parcial%202-conclu%C3%ADda-2ea44f"/>
   <img alt="Parcial 3" src="https://img.shields.io/badge/Parcial%203-implementada-2ea44f"/>
 </p>
@@ -64,6 +65,7 @@
 | Arquitetura | MVC sem framework |
 | Entidade principal | Alunos |
 | Banco de dados | MySQL |
+| Licença | [MIT](LICENSE) |
 | Repositório | [isa-csilva/projeto-integrador](https://github.com/isa-csilva/projeto-integrador) |
 | Branch principal | <code>master</code> |
 
@@ -152,7 +154,7 @@ AlunoController
 As views não executam SQL, e o model não gera HTML. Todas as saídas dinâmicas
 são escapadas com o helper <code>e()</code>.
 
-### Alinhamento com as Aulas 02 a 07
+### Alinhamento prioritário com as Aulas 02 a 07
 
 | Aula | Conceito aplicado | Evidência no projeto |
 | --- | --- | --- |
@@ -162,6 +164,19 @@ são escapadas com o helper <code>e()</code>.
 | Aula 05 — Rotas e URLs | Rotas centralizadas por caminho e verbo HTTP | <code>routes/web.php</code> e <code>core/Router.php</code> |
 | Aula 06 — Models e Banco | Model obtém a conexão reutilizável | <code>Aluno</code> usa <code>Database::connect()</code> |
 | Aula 07 — CRUD Create e Read | POST para cadastrar e GET para listar | <code>AlunoController::store()</code> e <code>AlunoController::index()</code> |
+
+### Relação com as demais aulas da disciplina
+
+| Aula | Conceito considerado | Aplicação ou delimitação no projeto |
+| --- | --- | --- |
+| Aula 01 — POO com PHP | Classes coesas, encapsulamento e reutilização | Controllers herdam de <code>Controller</code>; Router, Database e Model têm responsabilidades próprias |
+| Aula 08 — CRUD Update e Delete | Atualização, exclusão segura e confirmação | Operações reservadas para a Parcial 4, sem simular um CRUD completo nesta etapa |
+| Aula 09 — Requisições e Respostas HTTP | GET para consulta, POST para envio e validação no servidor | Rotas distinguem os verbos; cadastro usa POST, PRG e mensagens amigáveis |
+| Aula 10 — Boas Práticas e Segurança | Responsabilidade única, prepared statements, escape e erros seguros | SQL fica no Model, <code>e()</code> protege a saída e detalhes técnicos vão para o log |
+| Aula 11 — Sessões e Cookies | Estado da navegação e encerramento correto da sessão | Sessão inicia antes da saída, armazena mensagens flash e é regenerada no login demonstrativo |
+| Aula 12 — Autenticação e Autorização | Identidade e permissões são responsabilidades diferentes | Login atual é demonstrativo; autenticação persistente e autorização por perfil estão documentadas como futuras |
+| Aula 13 — Validação, Erros e Upload | Validação obrigatória no servidor e tratamento de exceções | Cadastro valida campos e trata falhas; upload permanece fora do escopo atual |
+| Aula 14 — Deploy e Publicação | Separação de ambientes, credenciais e configuração de URLs | Banco aceita variáveis de ambiente e o guia descreve a execução local; publicação exige revisão de produção e backup |
 
 A organização sugerida nas aulas concentra a classe de conexão em
 <code>app/Config/Database.php</code>. Este projeto preserva a estrutura
@@ -403,7 +418,11 @@ projeto-integrador/
 │   ├── js/
 │   ├── .htaccess
 │   └── index.php
+├── .gitattributes
 ├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
 └── README.md
 ~~~
 
@@ -456,10 +475,21 @@ projeto-integrador/
 
 ---
 
+## 🤝 Contribuição e Comunidade
+
+Antes de enviar mudanças, consulte o [guia de contribuição](CONTRIBUTING.md) e
+o [Código de Conduta](CODE_OF_CONDUCT.md). O código e a documentação autoral do
+projeto são disponibilizados sob a [Licença MIT](LICENSE); marcas, avatares,
+materiais da disciplina e outros conteúdos de terceiros permanecem sujeitos
+aos direitos de seus respectivos titulares.
+
+---
+
 ## 🔗 Repositório
 
 - **GitHub:** [isa-csilva/projeto-integrador](https://github.com/isa-csilva/projeto-integrador)
 - **Branch principal:** <code>master</code>
+- **Licença:** [MIT](LICENSE)
 - **Tecnologias obrigatórias:** PHP, MVC, MySQL, PDO, Git/GitHub e XAMPP
 
 <p align="center">
