@@ -24,7 +24,43 @@
 </p>
 
 ---
+## 📌 Índice
 
+- [👥 Integrantes](#-integrantes)
+- [1️⃣ Visão Geral da Solução](#1️⃣-visão-geral-da-solução)
+  - [Situação das entregas](#situação-das-entregas)
+- [2️⃣ Arquitetura MVC](#2️⃣-arquitetura-mvc)
+  - [Fluxo principal](#fluxo-principal)
+  - [Responsabilidades](#responsabilidades)
+  - [Alinhamento prioritário com as Aulas 02 a 07](#alinhamento-prioritário-com-as-aulas-02-a-07)
+  - [Relação com as demais aulas da disciplina](#relação-com-as-demais-aulas-da-disciplina)
+- [3️⃣ Gerenciamento de Alunos](#3️⃣-gerenciamento-de-alunos)
+  - [Campos persistidos](#campos-persistidos)
+  - [Fluxo do cadastro](#fluxo-do-cadastro)
+  - [Fluxo da edição](#fluxo-da-edição)
+  - [Fluxo da exclusão](#fluxo-da-exclusão)
+- [4️⃣ Rotas Disponíveis](#4️⃣-rotas-disponíveis)
+- [5️⃣ Banco de Dados e PDO](#5️⃣-banco-de-dados-e-pdo)
+  - [Configuração da conexão](#configuração-da-conexão)
+- [6️⃣ Resultados e Validações](#6️⃣-resultados-e-validações)
+  - [Tratamentos implementados](#tratamentos-implementados)
+- [7️⃣ Como Executar com XAMPP](#7️⃣-como-executar-com-xampp)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Instalação](#instalação)
+  - [Primeiro administrador e perfis](#primeiro-administrador-e-perfis)
+  - [Demonstração do CRUD completo](#demonstração-do-crud-completo)
+- [☁️ Hospedagem no InfinityFree](#️-hospedagem-no-infinityfree)
+- [8️⃣ Estrutura do Projeto](#8️⃣-estrutura-do-projeto)
+- [9️⃣ Decisões Técnicas e Limitações](#9️⃣-decisões-técnicas-e-limitações)
+  - [Decisões técnicas](#decisões-técnicas)
+  - [Limitações atuais](#limitações-atuais)
+  - [Próximas etapas](#próximas-etapas)
+- [🔐 Segurança](#-segurança)
+- [🤝 Contribuição e Comunidade](#-contribuição-e-comunidade)
+- [🔗 Repositório](#-repositório)
+
+---
+---
 ## 👥 Integrantes
 
 <table align="center">
@@ -615,6 +651,24 @@ materiais da disciplina e outros conteúdos de terceiros permanecem sujeitos
 aos direitos de seus respectivos titulares.
 
 ---
+
+### 🎥 Demonstração em Vídeo
+
+<p align="center">
+  <a href="https://youtu.be/GY3UYjGNB1c" target="_blank"> Link no Youtube   
+  </a>
+</p>
+
+
+https://github.com/user-attachments/assets/529c8bc1-76a2-49f2-a2d7-05eb6823e6c0
+
+
+---
+
+
+
+
+
 
 ## 🔗 Repositório
 
